@@ -192,8 +192,8 @@ CameraConverter::CameraConverter(
     resolution_(resolution),
     // change in case of depth camera
     colorspace_( (camera_source_!=AL::kDepthCamera)?AL::kRGBColorSpace:AL::kRawDepthColorSpace ),
-    msg_colorspace_( (camera_source_!=AL::kDepthCamera)?"rgb8":"16UC1" ),
-    cv_mat_type_( (camera_source_!=AL::kDepthCamera)?CV_8UC3:CV_16U ),
+    msg_colorspace_( (camera_source_!=AL::kDepthCamera)?"rgb8":"8UC1" ),
+    cv_mat_type_( (camera_source_!=AL::kDepthCamera)?CV_8UC3:CV_8U ),
     camera_info_( camera_info_definitions::getCameraInfo(camera_source, resolution) )
 {
   switch (camera_source) {
@@ -219,8 +219,8 @@ CameraConverter::CameraConverter(
       if (!has_stereo) {
         camera_source_ = AL::kDepthCamera;
         colorspace_ = AL::kInfraredColorSpace;
-        msg_colorspace_ = "16UC1";
-        cv_mat_type_ = CV_16U;
+        msg_colorspace_ = "8UC1";
+        cv_mat_type_ = CV_8U;
       }
 
       camera_info_ = camera_info_definitions::getCameraInfo(camera_source_, resolution_);
